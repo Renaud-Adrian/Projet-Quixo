@@ -1,6 +1,6 @@
 import argparse
 from api import initialiser_partie, jouer_un_coup
-from quixo import formater_entête, formater_le_damier
+from quixo import formater_entête, formater_le_damier, choisir_un_coup
 
 def main():
     # Argument de la ligne de commande pour l'idul du joueur
@@ -21,7 +21,7 @@ def main():
     
     # Boucle de jeu
     while True:
-        # Demander un coup à l'utilisateur (on suppose que la fonction choisir_un_coup existe)
+        # Demander un coup à l'utilisateur
         origine, direction = choisir_un_coup()
         
         # Jouer le coup
@@ -30,6 +30,11 @@ def main():
         # Afficher le nouvel état du jeu
         print(formater_entête(joueurs))
         print(formater_le_damier(etat))
+
+        # Vérifier si la partie est terminée (ajouter la logique de fin ici)
+        if etat['fin']:  # Assurez-vous que 'fin' existe dans l'état
+            print("La partie est terminée.")
+            break
 
 if __name__ == "__main__":
     main()
